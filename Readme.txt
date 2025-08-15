@@ -10,7 +10,7 @@ Prerequisites:
 Setup:
 1. Clone the repository:
    https://github.com/Ambaya0224/jenkins-training-python.git
-   cd my-simple-app
+   cd jenkins-training-python
 
 2. Install required Python packages:
    pip install pytest setuptools wheel build
