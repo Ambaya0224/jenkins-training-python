@@ -9,7 +9,7 @@ Prerequisites:
 
 Setup:
 1. Clone the repository:
-   git clone https://github.com/Ambaya0224/my-simple-app.git
+   https://github.com/Ambaya0224/jenkins-training-python.git
    cd my-simple-app
 
 2. Install required Python packages:
