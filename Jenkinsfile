@@ -7,8 +7,10 @@ pipeline {
                 sh '''
                 python3 -m venv venv
                 . venv/bin/activate
-                pip install --upgrade pip
-                if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+                pip install --upgrade pip setuptools wheel  # Added wheel and setuptools
+                if [ -f requirements.txt ]; then 
+                    pip install -r requirements.txt
+                fi
                 pip install pytest
                 '''
             }
@@ -32,7 +34,9 @@ pipeline {
             steps {
                 sh '''
                 . venv/bin/activate
-                python setup.py sdist bdist_wheel
+                python setup.py sdist  # Removed bdist_wheel if not needed
+                # OR use this if you want wheels:
+                # pip install wheel && python setup.py sdist bdist_wheel
                 '''
             }
         }
@@ -52,8 +56,21 @@ pipeline {
 
         stage('Archive build outputs') {
             steps {
-                archiveArtifacts artifacts: '**/dist/*', fingerprint: true
+                archiveArtifacts artifacts: 'dist/*,build/*', fingerprint: true  # More specific pattern
+                stash name: 'build-artifacts', includes: 'dist/*,build/*'  # Optional: for sharing between stages
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()  # Clean up workspace after build
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
