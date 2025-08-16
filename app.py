@@ -19,7 +19,7 @@ def multiply(a, b):
     NOTE: This function is intentionally buggy for demonstration.
     It performs addition instead of multiplication.
     """
-    return a + b # This is wrong, should be a * b
+    return a * b # This is wrong, should be a * b
 
 if __name__ == "__main__":
     print(greet("World"))
