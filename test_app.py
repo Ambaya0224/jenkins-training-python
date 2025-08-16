@@ -17,7 +17,7 @@ def test_is_positive_false_zero():
 
 def test_calculate_sum_negative_incorrect_expectation():
     # This test expects an incorrect result for negative numbers
-    assert calculate_sum(-1, -1) == 0 # EXPECTED TO FAIL: -1 + -1 is -2, not 0
+    assert calculate_sum(-1, -1) == -2 # EXPECTED TO FAIL: -1 + -1 is -2, not 0
 
 def test_multiply_buggy_function():
     # This test expects correct multiplication, but the function is buggy
